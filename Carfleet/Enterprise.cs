@@ -1,4 +1,7 @@
-﻿namespace Carfleet
+﻿using System;
+using System.ComponentModel;
+
+namespace Carfleet
 {
     public class Enterprise
     {
@@ -13,6 +16,31 @@
         #region public methods
         public Enterprise(string name, string street, string city, string phonenumber, string emailaddress)
         {
+        }
+
+        public void Add(Vehicle vehicleToAdd)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Add(Driver driver)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Vehicle GetVehicleByChassisNumber(string chassisNumber) 
+        {
+            throw new NotImplementedException();
+        }
+
+        public Driver GetDriverByEmailaddress(string driverEmailaddress)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AssignVehicleToDriver(string chassisNumber, string driverEmailaddress)
+        {
+            throw new NotImplementedException();
         }
         #endregion public methods
     }
