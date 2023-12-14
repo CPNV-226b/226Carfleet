@@ -28,28 +28,50 @@ namespace Carfleet
 
         public void Add(Vehicle vehicleToAdd)
         {
-            throw new NotImplementedException();
+            _vehicles.Add(vehicleToAdd);
         }
 
         public void Add(Driver driver)
         {
-            throw new NotImplementedException();
+            _drivers.Add(driver);
         }
 
-        public Vehicle GetVehicleByChassisNumber(string chassisNumber) 
+        public Vehicle GetVehicleByChassisNumber(string chassisNumber)
         {
-            throw new NotImplementedException();
+            foreach (Vehicle vehicle in _vehicles)
+            {
+                if (vehicle.ChassisNumber == chassisNumber)
+                {
+                    return vehicle;
+                }
+            }
+            throw new VehicleNotFoundException();
         }
 
         public Driver GetDriverByEmailaddress(string driverEmailaddress)
         {
-            throw new NotImplementedException();
+            foreach (Driver driver in _drivers)
+            {
+                if (driver.Emailaddress == driverEmailaddress)
+                {
+                    return driver;
+                }
+            }
+            throw new DriverNotFoundException();
         }
 
         public void AssignVehicleToDriver(string chassisNumber, string driverEmailaddress)
         {
-            throw new NotImplementedException();
+            Driver driver = this.GetDriverByEmailaddress(driverEmailaddress);
+            Vehicle vehicle = this.GetVehicleByChassisNumber(chassisNumber);
+            driver.TakeAVehicle(vehicle);
         }
         #endregion public methods
+
+        #region Nesteded class
+        public class EnterpriseException : Exception { }
+        public class VehicleNotFoundException : EnterpriseException { }
+        public class DriverNotFoundException : EnterpriseException { }
+        #endregion
     }
 }

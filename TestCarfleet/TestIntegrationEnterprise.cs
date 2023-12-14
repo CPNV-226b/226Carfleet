@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using System.Collections.Generic;
+using static Carfleet.Enterprise;
 
 namespace Carfleet
 {
@@ -38,12 +39,13 @@ namespace Carfleet
         public void Setup()
         {
             _vehicule = new Vehicle(_registration, _brand, _model, _chassisNumber);
-            _driver = new Driver(_driverName,_firstname, _driverPhonenumber, _driverEmailaddress, _workZone);
+            _driver = new Driver(_driverName,_firstname, _driverPhonenumber, 
+                                 _driverEmailaddress, _workZone);
             _enterprise = new Enterprise(_enterpriseName, _street, _city, _enterprisePhonenumber, _enterpriseEmailaddress);
         }
 
         [Test]
-        public void GetVehicleByRegistration_NewVehicle_VehicleAddedAndGet()
+        public void GetVehicleByChassisNumber_NewVehicle_VehicleAddedAndGiven()
         {
             //given
 
@@ -55,7 +57,19 @@ namespace Carfleet
         }
 
         [Test]
-        public void GetDriverByEmailaddress_NewDriver_DriverAddedAndGet()
+        public void GetVehicleByChassisNumber_MissingVehicle_ThrowException()
+        {
+            //given
+
+            //when
+            Assert.Throws<VehicleNotFoundException>(() => _enterprise.GetVehicleByChassisNumber(_chassisNumber));
+
+            //then
+            //Exception thrown
+        }
+
+        [Test]
+        public void GetDriverByEmailaddress_NewDriver_DriverAddedAndGiven()
         {
             //given
 
@@ -64,6 +78,18 @@ namespace Carfleet
 
             //then
             Assert.AreEqual(_driverName, _enterprise.GetDriverByEmailaddress(_driverEmailaddress).Name);
+        }
+
+        [Test]
+        public void GetDriverByEmailaddress_MissingDriver_ThrowException()
+        {
+            //given
+
+            //when
+            Assert.Throws<DriverNotFoundException>(() => _enterprise.GetDriverByEmailaddress(_driverEmailaddress));
+
+            //then
+            //Exception thrown
         }
 
         [Test]

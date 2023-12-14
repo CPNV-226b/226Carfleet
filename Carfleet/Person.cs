@@ -9,7 +9,7 @@ namespace Carfleet
         private string _firstname;
         private string _phonenumber;
         private string _emailaddress;
-        private List<string> _languages;
+        private List<string> _languages = new List<string>();
         #endregion private attributes
 
         #region public methods
@@ -19,7 +19,7 @@ namespace Carfleet
             Firstname = firstname;
             Phonenumber = phonenumber;
             Emailaddress = emailaddress;
-            Languages = languages;
+            _languages = languages;
         }
 
         public string Name { get => _name; set => _name = value; }
@@ -34,11 +34,6 @@ namespace Carfleet
             }
             set
             {
-                if(_languages == null)
-                {
-                    _languages = new List<string>();
-                }
-
                 foreach(string newLanguage in value)
                 {
                     if(!_languages.Contains(newLanguage))

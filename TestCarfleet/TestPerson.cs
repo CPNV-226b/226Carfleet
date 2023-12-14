@@ -17,6 +17,7 @@ namespace Carfleet
         [SetUp]
         public void Setup()
         {
+            _languages = new List<string>();
             _person = new Person(_name, _firstname, _phonenumber, _emailaddress, _languages);
         }
 
